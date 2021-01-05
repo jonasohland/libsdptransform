@@ -11,8 +11,6 @@ add_compile_options(-std=c++11)
 
 subdirs(test readme-helper)
 
-include_directories(${sdptransform_SOURCE_DIR}/include)
-
 set(
 	SOURCE_FILES
 	src/grammar.cpp
@@ -27,6 +25,8 @@ set(
 )
 
 add_library(sdptransform STATIC ${SOURCE_FILES} ${HEADER_FILES})
+
+target_include_directories(sdptransform PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
 
 install(TARGETS sdptransform DESTINATION lib)
 install(FILES ${HEADER_FILES} DESTINATION include/sdptransform)
